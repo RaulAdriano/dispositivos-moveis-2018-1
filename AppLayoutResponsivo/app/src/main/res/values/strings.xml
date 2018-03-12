@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">AppLayoutResponsivo</string>
+    <string name="Data">12 de Março de 2018</string>
+    <string name="ano2010">2010</string>
+    <string name="ano2011">2011</string>
+    <string name="android">ANDROID</string>
 </resources>

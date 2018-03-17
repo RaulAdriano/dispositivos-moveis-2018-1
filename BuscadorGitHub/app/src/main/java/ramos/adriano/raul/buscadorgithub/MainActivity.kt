@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,11 +21,17 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         if (item?.itemId == R.id.action_buscar){
-            Toast.makeText(this,"Clicou",Toast.LENGTH_LONG).show();
+            //Toast.makeText(this,"Clicou",Toast.LENGTH_LONG).show();
+            buscarGitHub();
             return true;
-
         }
-
         return super.onOptionsItemSelected(item);
+    }
+
+    fun buscarGitHub(){
+        val busca = et_busca.text.toString();
+        val url = NetworkUtils.construirUrl(busca)
+        tv_url.text = url.toString();
+
     }
 }

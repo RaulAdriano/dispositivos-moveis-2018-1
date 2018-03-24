@@ -6,7 +6,6 @@ package ramos.adriano.raul.buscadorgithub
 
 
 import android.net.Uri
-import java.io.IOException
 import java.io.InputStream
 import java.net.HttpURLConnection
 import java.net.MalformedURLException
@@ -36,7 +35,7 @@ class NetworkUtils {
             return null
         }
 
-        fun obterRespostaDaUrlHtpp(url: URL): String? {
+        fun obterRespostaDaUrlHttp(url: URL): String? {
             val urlConnection = url.openConnection() as HttpURLConnection
             var inputStream : InputStream? = null
             try {

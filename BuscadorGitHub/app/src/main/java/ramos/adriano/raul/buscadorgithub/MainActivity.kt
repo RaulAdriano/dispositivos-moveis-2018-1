@@ -3,10 +3,12 @@ package ramos.adriano.raul.buscadorgithub
 import android.os.AsyncTask
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
+import org.json.JSONObject
 import java.net.URL
 
 class MainActivity : AppCompatActivity() {
@@ -14,6 +16,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        condicao()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -60,6 +63,35 @@ class MainActivity : AppCompatActivity() {
         pb_aguarde.visibility = View.VISIBLE
     }
 
+
+    fun condicao(){
+        val dadosJson = """ {
+                                "temperatura":{
+                                    "minima":11.34,
+                                    "maxima":19.01
+                                },
+
+                                "clima":{
+                                    "id":801,
+                                    "condicoes":"nuvens",
+                                    "descricao":"poucas nuvens"
+                                },
+
+
+                                "pressao":1023.51,
+
+                                "umidade":87
+
+                            }"""
+        val objetoJson = JSONObject(dadosJson)
+        val clima = objetoJson.getJSONObject("clima");
+        val condicao = clima.getString("condicoes");
+
+        Log.d("json", "$condicao");
+
+    }
+
+
     inner class GitHubBuscaTask : AsyncTask<URL, Void, String>() {
 
         override fun doInBackground(vararg params: URL?): String? {
@@ -87,6 +119,8 @@ class MainActivity : AppCompatActivity() {
         override fun onPreExecute() {
             exibirProgressBar()
         }
+
+
 
     }
 }

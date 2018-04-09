@@ -19,11 +19,14 @@ class ListaVerdeAdapter : RecyclerView.Adapter<ListaVerdeAdapter.NumeroViewHolde
 
     val context : Context;
 
+    var viewHolderCount = 0;
+
 
     constructor(context: Context, lista: List<Int>) {
 
         this.context = context;
         this.lista = lista;
+
 
     }
 
@@ -32,6 +35,11 @@ class ListaVerdeAdapter : RecyclerView.Adapter<ListaVerdeAdapter.NumeroViewHolde
 
         val numeroListItem = LayoutInflater.from(context).inflate(R.layout.numero_list_item,parent,false);
         val numeroViewHolder = NumeroViewHolder(numeroListItem);
+        val tvViewHolderIndex = numeroListItem.findViewById<TextView>(R.id.tv_viewHolder_index)
+        tvViewHolderIndex.text = "ViewHolder $viewHolderCount"
+        val cor = ColorUtils.getViewHolderBackgroundColor(context, viewHolderCount)
+        numeroListItem.setBackgroundColor(cor)
+        viewHolderCount++
         return numeroViewHolder
 
     }
@@ -48,8 +56,8 @@ class ListaVerdeAdapter : RecyclerView.Adapter<ListaVerdeAdapter.NumeroViewHolde
 
         val numero = lista.get(position)
         holder.tvItemNumero?.text = numero.toString();
-        val cor =ColorUtils.getViewHolderBackgroundColor(context,position)
-        holder.tvItemNumero?.setBackgroundColor(cor)
+
+        
 
     }
 

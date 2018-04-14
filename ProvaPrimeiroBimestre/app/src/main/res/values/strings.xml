@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">PARALELEPIPEDO</string>
+    <string name="calcular">CALCULAR</string>
+    <string name="base">BASE</string>
+    <string name="altura">ALTURA</string>
+    <string name="profundidade">PROFUNDIDADE</string>
+</resources>

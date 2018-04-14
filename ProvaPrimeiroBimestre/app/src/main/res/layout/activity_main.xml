@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="ramos.adriano.raul.provaprimeirobimestre.MainActivity">
+
+    <EditText
+        android:id="@+id/ed_base"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/base"
+        android:inputType="number"
+        android:padding="16dp"
+        android:textSize="22sp" />
+
+    <EditText
+        android:id="@+id/ed_altura"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/altura"
+        android:inputType="number"
+        android:padding="16dp"
+        android:textSize="22sp" />
+
+    <EditText
+        android:id="@+id/ed_profundidade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/profundidade"
+        android:inputType="number"
+        android:padding="16dp"
+        android:textSize="22sp" />
+
+    <TextView
+        android:id="@+id/tv_area"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:textSize="22sp"
+        tools:text="AREA :" />
+
+    <TextView
+        android:id="@+id/tv_volume"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:textSize="22sp"
+        tools:text="VOLUME :" />
+
+</LinearLayout>

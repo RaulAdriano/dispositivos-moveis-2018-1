@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/acao_editar"
+        android:title="EDITAR" />
+
+    <item android:id="@+id/acao_finalizar"
+        android:title="FINALIZAR" />
+
+    <item android:id="@+id/acao_excluir"
+        android:title="EXCLUIR"/>
+</menu>

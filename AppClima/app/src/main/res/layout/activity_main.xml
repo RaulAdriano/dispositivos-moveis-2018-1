@@ -6,20 +6,24 @@
     android:layout_height="match_parent"
     tools:context="ramos.adriano.raul.appclima.MainActivity">
 
-    <ScrollView
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_clima"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
 
-        <TextView
-            android:id="@+id/dados_clima"
-            android:padding="16dp"
-            android:textSize="20sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-             />
+    </android.support.v7.widget.RecyclerView>
 
+    <TextView
+        android:id="@+id/tv_msgErro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"/>
 
-    </ScrollView>
+    <ProgressBar
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:id="@+id/pb_aguarde"
+        android:visibility="invisible"/>
 
 </FrameLayout>

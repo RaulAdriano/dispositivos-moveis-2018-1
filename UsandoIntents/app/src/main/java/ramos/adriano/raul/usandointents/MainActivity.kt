@@ -4,7 +4,9 @@ import android.content.Intent
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v4.app.ShareCompat
 import android.view.View
+import android.widget.ShareActionProvider
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -48,6 +50,20 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(Intent.ACTION_VIEW, uriEndereco)
             if (intent.resolveActivity(packageManager)!=null)
                 startActivity(intent)
+        })
+
+        //compartilhar  texto
+        btn_compartilhar.setOnClickListener({
+            val texto = et_mensagem.text.toString()
+            val intentCompartilhar = ShareCompat.IntentBuilder
+                    .from(this)
+                    .setType("text/plain")
+                    .setChooserTitle("Compartilhando")
+                    .setText(texto)
+                    .intent
+
+            if (intentCompartilhar.resolveActivity(packageManager)!=null)
+                startActivity(intentCompartilhar)
         })
     }
 

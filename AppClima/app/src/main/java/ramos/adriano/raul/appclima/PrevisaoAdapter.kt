@@ -12,9 +12,11 @@ import android.widget.TextView
 class PrevisaoAdapter : RecyclerView.Adapter<PrevisaoAdapter.PrevisaoViewHolder> {
 
     private var dadosClima: Array<String?>?
+    private var itemClickListener: ClimaItemClickListener
 
-    constructor(dadosClima: Array<String?>?) {
+    constructor(dadosClima: Array<String?>?, itemClickListener: ClimaItemClickListener) {
         this.dadosClima = dadosClima
+        this.itemClickListener = itemClickListener
     }
 
 
@@ -26,6 +28,10 @@ class PrevisaoAdapter : RecyclerView.Adapter<PrevisaoAdapter.PrevisaoViewHolder>
 
 
             tvDadosPrevisao = itemView?.findViewById<TextView>(R.id.tv_dados_previsao)
+
+            itemView!!.setOnClickListener({
+                itemClickListener.onItemClick(adapterPosition)
+          })
         }
     }
 
@@ -55,5 +61,12 @@ class PrevisaoAdapter : RecyclerView.Adapter<PrevisaoAdapter.PrevisaoViewHolder>
         notifyDataSetChanged()
     }
 
+    interface ClimaItemClickListener {
+         fun onItemClick(index: Int)
+    }
+
+    fun getDadosClima() : Array<String?>? {
+            return dadosClima
+    }
 
 }

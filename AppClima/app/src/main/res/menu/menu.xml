@@ -4,4 +4,7 @@
     <item
         android:id="@+id/acao_atualizar"
         android:title="Atualizar"/>
+    <item
+        android:id="@+id/acao_mapa"
+        android:title="Mapa"/>
 </menu>

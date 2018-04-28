@@ -1,6 +1,8 @@
 package ramos.adriano.raul.appclima
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.AsyncTask
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -8,10 +10,11 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import java.net.URL
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), PrevisaoAdapter.ClimaItemClickListener {
 
     var previsaoAdapter : PrevisaoAdapter? = null
     val context : Context = this
@@ -21,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        previsaoAdapter = PrevisaoAdapter(null)
+        previsaoAdapter = PrevisaoAdapter(null,this)
 
         val layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
 
@@ -31,6 +34,7 @@ class MainActivity : AppCompatActivity() {
         carregarDadosClima()
 
     }
+
 
     fun exibirResultado(){
         rv_clima.visibility = View.VISIBLE
@@ -59,6 +63,16 @@ class MainActivity : AppCompatActivity() {
         if(item?.itemId==R.id.acao_atualizar){
             carregarDadosClima()
             return true
+        }else if(item?.itemId==R.id.acao_mapa){
+            val endereco = "Campo Mourão, Paraná, Brasil"
+            val buider = Uri.Builder()
+                    .scheme("geo")
+                    .path("0,0")
+                    .appendQueryParameter("q",endereco)
+            val uriEndereco = buider.build()
+            val intent = Intent(Intent.ACTION_VIEW, uriEndereco)
+            if (intent.resolveActivity(packageManager)!=null)
+                startActivity(intent)
         }
         return  super.onOptionsItemSelected(item)
     }
@@ -97,5 +111,16 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+    override fun onItemClick(index: Int) {
+           val previsao = previsaoAdapter?.getDadosClima()?.get(index)
+          // Toast.makeText(this, "Previsão: $previsao", Toast.LENGTH_SHORT).show()
+
+            val destino = DetalhesActivity::class.java
+
+            val intent = Intent(this,destino)
+            intent.putExtra("prev", previsao)
+            startActivity(intent)
+          }
 
 }

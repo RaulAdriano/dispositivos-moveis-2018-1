@@ -15,20 +15,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/teste"
-        tools:text="Teste" />
+        />
 
     <Button
         android:id="@+id/btn_abrir_site"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Abrir Site"
-        tools:text="Teste" />
+         />
 
     <Button
         android:id="@+id/btn_abrir_mapa"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Abrir Mapa"
-        tools:text="Teste" />
+        />
+
+    <Button
+        android:id="@+id/btn_compartilhar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Compartilhar"
+        />
 
 </LinearLayout>

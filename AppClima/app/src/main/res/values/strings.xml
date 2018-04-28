@@ -5,9 +5,7 @@
     <string name="hoje">Hoje</string>
 
 
-
     <string name="amanha">Amanhã</string>
-
 
 
     <string name="formata_data_completa">
@@ -17,13 +15,11 @@
     </string>
 
 
-
     <!-- - - - - - - - - - - - - - - -->
 
     <!--     Usado por ClimaUtils    -->
 
     <!-- - - - - - - - - - - - - - - -->
-
 
 
     <string name="formata_temperatura_celsius">
@@ -33,13 +29,11 @@
     </string>
 
 
-
     <string name="formata_temperatura_fahrenheit">
 
         <xliff:g id="temp">%1.0f</xliff:g>\u00B0F
 
     </string>
-
 
 
     <string name="formata_vento_kmh">
@@ -49,13 +43,11 @@
     </string>
 
 
-
     <string name="formata_vento_mph">
 
         <xliff:g id="velocidade">%1$1.0f</xliff:g> mph <xliff:g id="direcao">%2$s</xliff:g>
 
     </string>
-
 
 
     <string name="condicao_2xx">Tempestade</string>
@@ -169,7 +161,6 @@
     <string name="condicao_961">Tempestade violenta</string>
 
     <string name="condicao_962">Furacão</string>
-
 
 
     <string name="condicao_desconhecida">Desconhecido (<xliff:g id="condicaoId">%1$d</xliff:g>)</string>

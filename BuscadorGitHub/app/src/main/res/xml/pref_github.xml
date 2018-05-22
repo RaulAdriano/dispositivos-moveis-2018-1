@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <CheckBoxPreference
+        android:defaultValue="@bool/pref_exibir_url_padrao"
+        android:key="@string/exibir_url"
+        android:summaryOff="Nao Exibir"
+        android:summaryOn="Exibir"
+        android:title="Exibir a URL de busca"
+
+        />
+
+    <ListPreference
+        android:defaultValue="@string/pref_cor_fundo"
+        android:entries="@array/pref_cor_fundo_lista_titulos"
+        android:entryValues="@array/pref_cor_fundo_lista_valores"
+        android:key=""
+        android:title="@string/pref_cor_fundo_titulo"
+        />
+</PreferenceScreen>

@@ -1,8 +1,11 @@
 package ramos.adriano.raul.buscadorgithub
 
+import android.content.Intent
 import android.os.AsyncTask
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.preference.PreferenceManager
+import android.support.v4.content.ContextCompat
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -16,7 +19,19 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+
+                val exibirUrl = sharedPreferences.getBoolean(getString(R.string.exibir_url), resources.getBoolean(R.bool.pref_exibir_url_padrao))
+
+                if (!exibirUrl) {
+                    tv_url.visibility = View.INVISIBLE
+                }
+
+
         condicao()
+
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -30,6 +45,11 @@ class MainActivity : AppCompatActivity() {
             buscarGitHub();
             return true;
         }
+
+        if (item?.itemId == R.id.action_configuracoes) {
+                    val intent = Intent(this, ConfiguracaoActivity::class.java)
+                    startActivity(intent)
+                }
         return super.onOptionsItemSelected(item);
     }
 
@@ -41,6 +61,22 @@ class MainActivity : AppCompatActivity() {
         if(url != null){
             val task = GitHubBuscaTask()
             task.execute(url)
+        }
+
+    }
+
+    fun selecionaCorDeFundo(corFundo: String): Int {
+
+        return when (corFundo) {
+
+            getString(R.string.pref_cor_fundo_branco_valor) -> ContextCompat.getColor(this, R.color.fundoBranco)
+
+            getString(R.string.pref_cor_fundo_verde_valor) -> ContextCompat.getColor(this, R.color.fundoVerde)
+
+            getString(R.string.pref_cor_fundo_azul_valor) -> ContextCompat.getColor(this, R.color.fundoAzul)
+
+            else -> ContextCompat.getColor(this, R.color.fundoBranco)
+
         }
 
     }

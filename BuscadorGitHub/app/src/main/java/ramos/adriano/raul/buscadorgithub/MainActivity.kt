@@ -1,6 +1,7 @@
 package ramos.adriano.raul.buscadorgithub
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.AsyncTask
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -14,13 +15,19 @@ import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONObject
 import java.net.URL
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(),
+        SharedPreferences.OnSharedPreferenceChangeListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        val corFundo = sharedPreferences.getString(
+                getString(R.string.pref_cor_fundo),
+                getString(R.string.pref_cor_fundo_padrao)
+        )
+        window.decorView.setBackgroundColor(selecionaCorDeFundo(corFundo))
 
                 val exibirUrl = sharedPreferences.getBoolean(getString(R.string.exibir_url), resources.getBoolean(R.bool.pref_exibir_url_padrao))
 
@@ -33,6 +40,25 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+
+   override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String) {
+        if (key == getString(R.string.exibir_url)) {
+            val exibirUrl = sharedPreferences.getBoolean(
+                    key,
+                    resources.getBoolean(R.bool.pref_exibir_url_padrao)
+            )
+            tv_url.visibility = if (exibirUrl) View.VISIBLE else View.INVISIBLE
+        } else if (key == getString(R.string.pref_cor_fundo)) {
+            val corFundo = sharedPreferences.getString(
+                    key,
+                    getString(R.string.pref_cor_fundo_padrao)
+            )
+            window.decorView.setBackgroundColor(selecionaCorDeFundo(corFundo))
+        }
+    }
+
+
+
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main, menu)

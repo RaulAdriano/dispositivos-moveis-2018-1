@@ -5,7 +5,10 @@ import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.BaseColumns
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.helper.ItemTouchHelper
 import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.cliente_list_item.*
@@ -28,6 +31,22 @@ class MainActivity : AppCompatActivity() {
 
         clientesAdapter = ClientesAdapter(cursor)
         rv_clientes.adapter = clientesAdapter
+
+        val callback = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT){
+            override fun onMove(recyclerView: RecyclerView?, viewHolder: RecyclerView.ViewHolder?, target: RecyclerView.ViewHolder?): Boolean {
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val id = viewHolder.itemView.tag as Long
+                removerCliente(id)
+                clientesAdapter!!.atualizarCursor(getTodosClientes())
+            }
+
+        }
+
+        val touchHelper = ItemTouchHelper(callback)
+        touchHelper.attachToRecyclerView(rv_clientes)
     }
 
     fun getTodosClientes(): Cursor {
@@ -62,10 +81,18 @@ class MainActivity : AppCompatActivity() {
 
     private fun adicionarNovoCliente(nome: String, tamanhoGrupo: Int) : Long {
         println(nome + " " + tamanhoGrupo)
+
         val cliente = ContentValues()
         cliente.put(ListaEsperaContrato.Clientes.COLUNA_NOME, nome)
         cliente.put(ListaEsperaContrato.Clientes.COLUNA_TAMANHO_GRUPO, tamanhoGrupo)
         return database!!.insert(ListaEsperaContrato.Clientes.TABELA, null, cliente)
+    }
+
+    private fun removerCliente(id : Long): Boolean{
+
+        val removidos = database!!.delete(ListaEsperaContrato.Clientes.TABELA, "${BaseColumns._ID} = ?", arrayOf(id.toString()))
+
+        return removidos > 0
     }
 
 }

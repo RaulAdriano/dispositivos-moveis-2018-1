@@ -73,6 +73,10 @@ class ClimaContentProvider: ContentProvider() {
                  }finally {
                      bd.endTransaction()
                  }
+
+                 if (registrosInseridos>0){
+                     context.contentResolver.notifyChange(uri,null)
+                 }
                  return registrosInseridos
              }
          }

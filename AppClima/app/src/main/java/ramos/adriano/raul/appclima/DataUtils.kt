@@ -225,6 +225,14 @@ class DataUtils {
         }
 
 
+        fun dataEstaNormalizada(milisegundos: Long) :Boolean{
+            var estaNormalizada = false
+            if (milisegundos % DIA_EM_MILISSEGUNDOS == 0L){
+                estaNormalizada = true
+            }
+            return estaNormalizada
+        }
+
 
     }
 }

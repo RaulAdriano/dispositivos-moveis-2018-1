@@ -1,8 +1,13 @@
 package ramos.adriano.raul.appclima
 
+import android.net.Uri
 import android.provider.BaseColumns
 
 object ClimaContrato {
+
+    val AUTORIDADE = "ramos.adriano.raul.appclima.ClimaContentProvider"
+    val URI_BASE = Uri.parse("content://$AUTORIDADE")
+    val URI_CLIMA = "clima"
 
     internal  object  Climas: BaseColumns{
         const val TABELA = "clima"

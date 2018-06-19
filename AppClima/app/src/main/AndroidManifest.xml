@@ -23,6 +23,12 @@
             android:label="Previsao"
             android:parentActivityName=".MainActivity"
             ></activity>
+
+        <provider
+            android:authorities="@string/autoridade"
+            android:name=".ClimaContentProvider"
+            android:exported="false"/>
+
     </application>
 
 </manifest>

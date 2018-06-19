@@ -160,7 +160,11 @@
 
     <string name="condicao_961">Tempestade violenta</string>
 
+
     <string name="condicao_962">Furacão</string>
+
+    <string name="autoridade">ramos.adriano.raul.appclima.ClimaContentProvider</string>
+
 
 
     <string name="condicao_desconhecida">Desconhecido (<xliff:g id="condicaoId">%1$d</xliff:g>)</string>
